@@ -1,6 +1,6 @@
 package com.waldener.archdog;
 
-public class World {
+public class WorldModel {
     private String world = "world";
 
     public String getWorld() {

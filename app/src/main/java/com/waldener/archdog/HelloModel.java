@@ -1,6 +1,6 @@
 package com.waldener.archdog;
 
-public class Hello {
+public class HelloModel {
     private String hello = "hello";
 
     public String getHello() {

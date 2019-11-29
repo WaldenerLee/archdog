@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.waldener.arch.ArchActivity;
 import com.waldener.arch.BindView;
 
-public class MainActivity extends ArchActivity<TttVM> {
+public class MainActivity extends ArchActivity<MainVM> {
     private TextView tvHello;
     private TextView tvWorld;
     private Button btn;
@@ -29,14 +29,14 @@ public class MainActivity extends ArchActivity<TttVM> {
     }
 
     @SuppressWarnings("unused")
-    @BindView(model = Hello.class)
-    public void onBindView(Hello hello){
-        tvHello.setText(hello.getHello());
+    @BindView(model = HelloModel.class)
+    public void onBindView(HelloModel helloModel){
+        tvHello.setText(helloModel.getHello());
     }
 
     @SuppressWarnings("unused")
-    @BindView(model = World.class)
-    private void onBindView(World world){
-        tvWorld.setText(world.getWorld());
+    @BindView(model = WorldModel.class)
+    private void onBindView(WorldModel worldModel){
+        tvWorld.setText(worldModel.getWorld());
     }
 }
