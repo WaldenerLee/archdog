@@ -13,9 +13,9 @@ import androidx.annotation.Nullable;
 import com.waldener.arch.BindView;
 import com.waldener.archdog.R;
 import com.waldener.archdog.blank.model.BlankModel;
-import com.waldener.archdog.support.SupportFragment;
+import com.waldener.archdog.permission.PermissionFragment;
 
-public class BlankFragment extends SupportFragment<BlankVM> {
+public class BlankFragment extends PermissionFragment<BlankVM> {
     private TextView tvHello;
     private Button btnClick;
 
