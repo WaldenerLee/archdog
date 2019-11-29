@@ -43,11 +43,13 @@ public class MainActivity extends ArchActivity implements ArchWrapper<TttVM> {
         return tttVM;
     }
 
+    @SuppressWarnings("unused")
     @BindView(model = Hello.class)
-    private void onBindView(Hello hello){
+    public void onBindView(Hello hello){
         tvHello.setText(hello.getHello());
     }
 
+    @SuppressWarnings("unused")
     @BindView(model = World.class)
     private void onBindView(World world){
         tvWorld.setText(world.getWorld());
