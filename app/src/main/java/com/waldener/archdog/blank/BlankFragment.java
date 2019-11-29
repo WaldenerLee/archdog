@@ -40,7 +40,7 @@ public class BlankFragment extends PermissionFragment<BlankVM> {
     @SuppressWarnings("unused")
     @BindView(model = BlankModel.class)
     private void onBindView(BlankModel model){
-        Log.i(TAG, model.toString());
+        Log.i(TAG, model.toString() + ", hashcode: " + model.hashCode());
         tvHello.setText(model.getHello());
     }
 

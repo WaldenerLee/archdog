@@ -15,35 +15,16 @@ import java.util.Map;
 public abstract class ArchViewModel extends ViewModel {
 
     private Map<Class<?>, MutableLiveData> liveDataMap = new HashMap<>();
+    private Map<Class<?>, Object> modelMap = new HashMap<>();
 
     @SuppressWarnings("unchecked")
     <T> MutableLiveData<T> getLiveData(Class<?> clazz){
         MutableLiveData<T> liveData = liveDataMap.get(clazz);
         if(liveData == null){
             liveData = new MutableLiveData<>();
-            T model = newModel(clazz);
-            liveData.setValue(model);
             liveDataMap.put(clazz, liveData);
         }
         return liveData;
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T> T newModel(Class<?> clazz){
-        try {
-            Constructor constructor = clazz.getConstructor();
-            constructor.setAccessible(true);
-            return (T) constructor.newInstance();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     void injectModel(){
@@ -64,20 +45,69 @@ public abstract class ArchViewModel extends ViewModel {
         }
     }
 
-    private  <T> T getModel(Class<?> clazz){
+    @SuppressWarnings("unchecked")
+    private <T> T getModel(Class<?> clazz){
         MutableLiveData<T> liveData = getLiveData(clazz);
         if(liveData != null){
-            return liveData.getValue();
+            T model = liveData.getValue();
+            if(model != null){
+                return model;
+            }
         }
-       return null;
+        T model = (T) modelMap.get(clazz);
+        if(model != null){
+            return model;
+        }else {
+            model = newModel(clazz);
+            modelMap.put(clazz, model);
+        }
+        return model;
     }
 
+    @SuppressWarnings("unchecked")
+    private <T> T newModel(Class<?> clazz){
+        try {
+            Constructor constructor = clazz.getConstructor();
+            constructor.setAccessible(true);
+            return (T) constructor.newInstance();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * postValue
+     * @param model
+     * @param <T>
+     */
     protected <T> void postValue(T model){
         if(model != null){
             Class<?> clazz = model.getClass();
             MutableLiveData<T> liveData = getLiveData(clazz);
             if(liveData != null){
                 liveData.postValue(model);
+            }
+        }
+    }
+
+    /**
+     * setValue
+     * @param model
+     * @param <T>
+     */
+    protected <T> void setValue(T model){
+        if(model != null){
+            Class<?> clazz = model.getClass();
+            MutableLiveData<T> liveData = getLiveData(clazz);
+            if(liveData != null){
+                liveData.setValue(model);
             }
         }
     }
