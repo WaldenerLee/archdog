@@ -11,13 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.waldener.arch.ArchFragment;
 import com.waldener.arch.BindView;
 import com.waldener.archdog.R;
 import com.waldener.archdog.blank.model.HelloModel;
 import com.waldener.archdog.blank.model.WorldModel;
-import com.waldener.archdog.permission.PermissionFragment;
 
-public class BlankFragment extends PermissionFragment<BlankVM> {
+public class BlankFragment extends ArchFragment<BlankVM> {
+    private final String TAG = getClass().getSimpleName();
+
     private TextView tvHello;
     private TextView tvWorld;
     private Button btnClick;
