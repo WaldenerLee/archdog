@@ -37,15 +37,6 @@
         suggest="${underscoreToCamelCase(classToResource(className))}VM"
         help="The name of the ViewModel class to create" />
 
-    <parameter
-        id="modelName"
-        name="Model Name"
-        type="string"
-        constraints="class|nonempty|unique"
-        default="BlankModel"
-        suggest="${underscoreToCamelCase(classToResource(className))}Model"
-        help="The name of the Model class to create" />
-
     <thumbs>
         <thumb>template_blank_fragment.png</thumb>
     </thumbs>

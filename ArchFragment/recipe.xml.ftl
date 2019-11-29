@@ -23,9 +23,4 @@
 
     <open file="${escapeXmlAttribute(srcOut)}/${viewModelName}.${ktOrJavaExt}" />
 
-    <instantiate from="root/src/app_package/BlankModel.${ktOrJavaExt}.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/${modelName}.${ktOrJavaExt}" />
-
-    <open file="${escapeXmlAttribute(srcOut)}/${modelName}.${ktOrJavaExt}" />
-
 </recipe>

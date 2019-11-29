@@ -2,6 +2,6 @@ package ${packageName};
 
 import com.waldener.arch.ArchViewModel;
 
-public class ${viewModelName} extends ArchViewModel<${modelName}> {
+class ${viewModelName} extends ArchViewModel {
     // TODO:
 }

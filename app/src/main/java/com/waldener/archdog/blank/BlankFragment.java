@@ -1,23 +1,21 @@
-package ${packageName};
+package com.waldener.archdog.blank;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ${getMaterialComponentName('android.support.annotation.NonNull', useAndroidX)};
-import ${getMaterialComponentName('android.support.annotation.Nullable', useAndroidX)};
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-<#if applicationPackage??>
-import ${applicationPackage}.R;
-</#if>
+import com.waldener.archdog.R;
 import com.waldener.arch.ArchFragment;
 
-public class ${className} extends ArchFragment<${viewModelName}> {
+public class BlankFragment extends ArchFragment<BlankVM> {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.${layoutName}, container, false);
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 
     @Override
