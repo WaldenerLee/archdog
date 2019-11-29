@@ -31,7 +31,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation project(path: ':arch')
+//    implementation project(path: ':arch')
+    implementation 'com.waldener:archdog:0.2'
     //ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+
 }
