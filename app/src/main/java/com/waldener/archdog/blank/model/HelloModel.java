@@ -1,7 +1,7 @@
 package com.waldener.archdog.blank.model;
 
-public class BlankModel {
-    private String hello = "hello";
+public class HelloModel {
+    private String hello;
 
     public String getHello() {
         return hello;

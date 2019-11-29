@@ -13,11 +13,13 @@ import androidx.annotation.Nullable;
 
 import com.waldener.arch.BindView;
 import com.waldener.archdog.R;
-import com.waldener.archdog.blank.model.BlankModel;
+import com.waldener.archdog.blank.model.HelloModel;
+import com.waldener.archdog.blank.model.WorldModel;
 import com.waldener.archdog.permission.PermissionFragment;
 
 public class BlankFragment extends PermissionFragment<BlankVM> {
     private TextView tvHello;
+    private TextView tvWorld;
     private Button btnClick;
 
     @Override
@@ -30,6 +32,7 @@ public class BlankFragment extends PermissionFragment<BlankVM> {
         super.onViewCreated(view, savedInstanceState);
 
         tvHello = view.findViewById(R.id.tv_hello);
+        tvWorld = view.findViewById(R.id.tv_world);
         btnClick = view.findViewById(R.id.btn_click);
 
         btnClick.setOnClickListener(v -> {
@@ -38,10 +41,17 @@ public class BlankFragment extends PermissionFragment<BlankVM> {
     }
 
     @SuppressWarnings("unused")
-    @BindView(model = BlankModel.class)
-    private void onBindView(BlankModel model){
+    @BindView(model = HelloModel.class)
+    private void onBindView(HelloModel model){
         Log.i(TAG, model.toString() + ", hashcode: " + model.hashCode());
         tvHello.setText(model.getHello());
+    }
+
+    @SuppressWarnings("unused")
+    @BindView(model = WorldModel.class)
+    private void onBindView(WorldModel model){
+        Log.i(TAG, model.toString() + ", hashcode: " + model.hashCode());
+        tvWorld.setText(model.getWorld());
     }
 
 }
