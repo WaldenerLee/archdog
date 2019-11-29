@@ -3,10 +3,15 @@ package com.waldener.archdog;
 import android.util.Log;
 
 import com.waldener.arch.ArchViewModel;
+import com.waldener.arch.Model;
 
 public class TttVM extends ArchViewModel {
-    private Hello hello = getModel(Hello.class);
-    private World world = getModel(World.class);
+
+    @Model
+    private Hello hello;
+
+    @Model
+    private World world;
 
     private int i = 0;
 

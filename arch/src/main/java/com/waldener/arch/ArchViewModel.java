@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +33,8 @@ public abstract class ArchViewModel extends ViewModel {
         try {
             Constructor constructor = clazz.getConstructor();
             constructor.setAccessible(true);
-            return (T) constructor.newInstance();
+            T model = (T) constructor.newInstance();
+            return model;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -45,7 +47,25 @@ public abstract class ArchViewModel extends ViewModel {
         return null;
     }
 
-    protected  <T> T getModel(Class<T> clazz){
+    void injectModel(){
+        Class<?> clazz = this.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields){
+            Model annotation = field.getAnnotation(Model.class);
+            if(annotation != null){
+                field.setAccessible(true);
+                try {
+                    Class fieldClass = field.getType();
+                    Object model = getModel(fieldClass);
+                    field.set(this, model);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private  <T> T getModel(Class<?> clazz){
         MutableLiveData<T> liveData = getLiveData(clazz);
         if(liveData != null){
             return liveData.getValue();

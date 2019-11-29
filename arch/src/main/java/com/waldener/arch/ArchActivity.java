@@ -46,6 +46,7 @@ public class ArchActivity extends AppCompatActivity {
                 });
             }
         }
+        archViewModel.injectModel();
     }
 
 }
