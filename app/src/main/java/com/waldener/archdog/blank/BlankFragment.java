@@ -4,14 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.waldener.arch.ArchFragment;
+import com.waldener.arch.BindView;
 import com.waldener.archdog.R;
+import com.waldener.archdog.blank.model.BlankModel;
+import com.waldener.archdog.support.SupportFragment;
 
-public class BlankFragment extends ArchFragment<BlankVM> {
+public class BlankFragment extends SupportFragment<BlankVM> {
+    private TextView tvHello;
+    private Button btnClick;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -21,7 +27,18 @@ public class BlankFragment extends ArchFragment<BlankVM> {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // TODO:
+
+        tvHello = view.findViewById(R.id.tv_hello);
+        btnClick = view.findViewById(R.id.btn_click);
+
+        btnClick.setOnClickListener(v -> {
+            viewModel.click();
+        });
+    }
+
+    @BindView(model = BlankModel.class)
+    private void onBindView(BlankModel model){
+        tvHello.setText(model.getHello());
     }
 
 }
