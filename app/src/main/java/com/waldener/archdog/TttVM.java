@@ -16,7 +16,8 @@ public class TttVM extends ArchViewModel {
         hello.setHello("hello " + i);
         postValue(hello);
 
-        world.setWorld("world" + i);
+//        world.setWorld("world" + i);
+        world = null;
         postValue(world);
 
         i++;

@@ -54,10 +54,12 @@ public abstract class ArchViewModel extends ViewModel {
     }
 
     protected <T> void postValue(T model){
-        Class<?> clazz = model.getClass();
-        MutableLiveData<T> liveData = getLiveData(clazz);
-        if(liveData != null){
-            liveData.postValue(model);
+        if(model != null){
+            Class<?> clazz = model.getClass();
+            MutableLiveData<T> liveData = getLiveData(clazz);
+            if(liveData != null){
+                liveData.postValue(model);
+            }
         }
     }
 
