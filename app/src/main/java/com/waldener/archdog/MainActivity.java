@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.waldener.arch.ArchActivity;
 import com.waldener.arch.BindView;
+import com.waldener.archdog.model.HelloModel;
+import com.waldener.archdog.model.WorldModel;
 
 public class MainActivity extends ArchActivity<MainVM> {
     private TextView tvHello;

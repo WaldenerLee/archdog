@@ -1,4 +1,4 @@
-package com.waldener.archdog;
+package com.waldener.archdog.model;
 
 public class WorldModel {
     private String world = "world";

@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.waldener.arch.ArchViewModel;
 import com.waldener.arch.Model;
+import com.waldener.archdog.model.HelloModel;
+import com.waldener.archdog.model.WorldModel;
 
 public class MainVM extends ArchViewModel {
 
