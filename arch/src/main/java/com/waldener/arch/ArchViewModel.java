@@ -5,105 +5,60 @@ import androidx.lifecycle.ViewModel;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by Waldener on 2019/6/24.
  */
-public abstract class ArchViewModel<T> extends ViewModel {
-    private MutableLiveData<T> liveData;
-    private T model;
+public abstract class ArchViewModel extends ViewModel {
 
-    private Map<Class<?>, MutableLiveData> liveDataMap;
-
-    MutableLiveData<T> getLiveData(){
-        if(liveData == null){
-            synchronized (this){
-                if(liveData == null){
-                    liveData = new MutableLiveData<>();
-                    model = newModel();
-                    liveData.setValue(model);
-                }
-            }
-        }
-        return liveData;
-    }
-
-    Map<Class<?>, MutableLiveData> getLiveDataMap(){
-        if(liveDataMap == null){
-            synchronized (this){
-                if(liveDataMap == null){
-                    liveDataMap = new HashMap<>();
-                }
-            }
-        }
-        return liveDataMap;
-    }
+    private Map<Class<?>, MutableLiveData> liveDataMap = new HashMap<>();
 
     @SuppressWarnings("unchecked")
-    private T newModel(){
-        Class<?> clazz = (Class<?>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        try {
-            Constructor constructor = clazz.getConstructor();
-            constructor.setAccessible(true);
-            return (T) constructor.newInstance();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    protected void postValue(){
-        getLiveData().postValue(model);
-    }
-
-    public T getModel(){
-        return getLiveData().getValue();
-    }
-
-    @SuppressWarnings("unchecked")
-    private T newModel(Class<T> clazz){
-        try {
-            Constructor constructor = clazz.getConstructor();
-            constructor.setAccessible(true);
-            return (T) constructor.newInstance();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    MutableLiveData<T> getLiveData(Class<T> clazz){
+    <T> MutableLiveData<T> getLiveData(Class<?> clazz){
         MutableLiveData<T> liveData = liveDataMap.get(clazz);
         if(liveData == null){
             liveData = new MutableLiveData<>();
             T model = newModel(clazz);
             liveData.setValue(model);
+            liveDataMap.put(clazz, liveData);
         }
         return liveData;
     }
 
     @SuppressWarnings("unchecked")
-    public T getModel(Class<T> clazz){
-        MutableLiveData<T> liveData = liveDataMap.get(clazz);
+    private <T> T newModel(Class<?> clazz){
+        try {
+            Constructor constructor = clazz.getConstructor();
+            constructor.setAccessible(true);
+            return (T) constructor.newInstance();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    protected  <T> T getModel(Class<T> clazz){
+        MutableLiveData<T> liveData = getLiveData(clazz);
         if(liveData != null){
             return liveData.getValue();
         }
        return null;
+    }
+
+    protected <T> void postValue(T model){
+        Class<?> clazz = model.getClass();
+        MutableLiveData<T> liveData = getLiveData(clazz);
+        if(liveData != null){
+            liveData.postValue(model);
+        }
     }
 
 }
