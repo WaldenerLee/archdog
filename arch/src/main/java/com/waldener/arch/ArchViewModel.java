@@ -33,8 +33,7 @@ public abstract class ArchViewModel extends ViewModel {
         try {
             Constructor constructor = clazz.getConstructor();
             constructor.setAccessible(true);
-            T model = (T) constructor.newInstance();
-            return model;
+            return (T) constructor.newInstance();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
