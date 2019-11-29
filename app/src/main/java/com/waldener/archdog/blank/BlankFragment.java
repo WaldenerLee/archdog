@@ -1,6 +1,7 @@
 package com.waldener.archdog.blank;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class BlankFragment extends PermissionFragment<BlankVM> {
     @SuppressWarnings("unused")
     @BindView(model = BlankModel.class)
     private void onBindView(BlankModel model){
+        Log.i(TAG, model.toString());
         tvHello.setText(model.getHello());
     }
 

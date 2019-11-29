@@ -11,6 +11,9 @@ public class BlankVM extends ArchViewModel {
     private BlankModel blankModel;
 
     void click(){
+        /*
+        * 假设此处为一段复杂的业务逻辑
+         */
         blankModel.setHello("hello " + i++);
         postValue(blankModel);
     }

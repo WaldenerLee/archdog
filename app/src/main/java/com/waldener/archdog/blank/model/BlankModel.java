@@ -10,4 +10,11 @@ public class BlankModel {
     public void setHello(String hello) {
         this.hello = hello;
     }
+
+    @Override
+    public String toString() {
+        return "BlankModel{" +
+                "hello='" + hello + '\'' +
+                '}';
+    }
 }
