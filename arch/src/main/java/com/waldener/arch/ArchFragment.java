@@ -7,24 +7,41 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProviders;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 /**
  * Created by Waldener on 2019/6/27.
  */
-public class ArchFragment extends Fragment {
+public class ArchFragment<VM extends ArchViewModel> extends Fragment {
+    protected VM viewModel;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(this instanceof ArchWrapper){
-            ArchViewModel archViewModel = ((ArchWrapper) this).getViewModel();
-            if(archViewModel != null){
-                bindViewModel(archViewModel);
+        ArchViewModel archViewModel = getViewModel();
+        if(archViewModel != null){
+            bindViewModel(archViewModel);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    protected VM getViewModel(){
+        if(viewModel == null){
+            ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
+            if(parameterizedType != null){
+                Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+                if(actualTypeArguments.length > 0){
+                    Class<VM> clazz = (Class<VM>) actualTypeArguments[0];
+                    viewModel = ViewModelProviders.of(this).get(clazz);
+                }
             }
         }
+        return viewModel;
     }
 
     @SuppressWarnings("unchecked")
