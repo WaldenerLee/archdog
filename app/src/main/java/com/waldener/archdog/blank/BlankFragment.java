@@ -36,6 +36,7 @@ public class BlankFragment extends SupportFragment<BlankVM> {
         });
     }
 
+    @SuppressWarnings("unused")
     @BindView(model = BlankModel.class)
     private void onBindView(BlankModel model){
         tvHello.setText(model.getHello());
