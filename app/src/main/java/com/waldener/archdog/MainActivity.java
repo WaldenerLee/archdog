@@ -1,15 +1,10 @@
 package com.waldener.archdog;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.waldener.arch.ArchActivity;
 
 public class MainActivity extends ArchActivity {
-    private TextView tvHello;
-    private TextView tvWorld;
-    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

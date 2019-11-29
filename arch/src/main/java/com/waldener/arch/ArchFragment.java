@@ -32,12 +32,14 @@ public class ArchFragment<VM extends ArchViewModel> extends Fragment {
     @SuppressWarnings("unchecked")
     protected VM getViewModel(){
         if(viewModel == null){
-            ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-            if(parameterizedType != null){
-                Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
-                if(actualTypeArguments.length > 0){
-                    Class<VM> clazz = (Class<VM>) actualTypeArguments[0];
-                    viewModel = ViewModelProviders.of(this).get(clazz);
+            Type type = getClass().getGenericSuperclass();
+            if(type != null){
+                if(type instanceof ParameterizedType){
+                    Type[] actualTypeArguments = ((ParameterizedType)type).getActualTypeArguments();
+                    if(actualTypeArguments.length > 0){
+                        Class<VM> clazz = (Class<VM>) actualTypeArguments[0];
+                        viewModel = ViewModelProviders.of(this).get(clazz);
+                    }
                 }
             }
         }

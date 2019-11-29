@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.waldener.archdog.R;
 import com.waldener.arch.ArchFragment;
+import com.waldener.archdog.R;
 
 public class BlankFragment extends ArchFragment<BlankVM> {
 
