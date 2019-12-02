@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Waldener on 2019/6/24.
+ * Created by Waldener on 2019/6/27.
  */
 public abstract class ArchViewModel extends ViewModel {
 
