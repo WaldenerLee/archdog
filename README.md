@@ -1,6 +1,8 @@
 # archdog
 
+
 implementation 'com.waldener:archdog:0.6'
+
 
 模板的使用：
 1、将工程根目录下的ArchFragment文件夹整个移动到[androidstudio安装目录]/plugins/android/lib/templates/other/
