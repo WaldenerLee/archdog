@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Waldener on 2019/6/27.
  */
-public abstract class ArchViewModel extends ViewModel {
+public class ArchViewModel extends ViewModel {
 
     private Map<Class<?>, MutableLiveData> liveDataMap = new HashMap<>();
     private Map<Class<?>, Object> modelMap = new HashMap<>();
