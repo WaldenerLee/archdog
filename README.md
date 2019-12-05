@@ -1,5 +1,4 @@
 # archdog
-mvvm arch
 
 implementation 'com.waldener:archdog:0.6'
 
