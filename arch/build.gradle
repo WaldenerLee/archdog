@@ -52,7 +52,7 @@ publish {
     userOrg = 'waldener'
     groupId = 'com.waldener'
     artifactId = 'archdog'
-    publishVersion = '0.6'
+    publishVersion = '0.7'
     desc = 'android mvvm'
     website = 'https://github.com/WaldenerLee/archdog'
 }
