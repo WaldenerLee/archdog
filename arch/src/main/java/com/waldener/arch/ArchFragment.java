@@ -67,7 +67,6 @@ public class ArchFragment<VM extends ArchViewModel> extends Fragment {
                 });
             }
         }
-        archViewModel.injectModel();
     }
 
 }
